@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tupoksi | BP3 Tegal</title>
+<meta name="generator" content="BPPP Tegal | www.bppptegal.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="PPID-02.css" rel="stylesheet">
+<link href="tupoksi.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $.getJSON('tupoksi.json?v=' + new Date().getTime(), function(data)
+   {
+      $.each(data, function(key, value)
+      {
+         $('#wb_'+value.object).html(value.content);
+      });
+   })
+   .always(function()
+   {
+      $('.editable-content-hidden').removeClass('editable-content-hidden');
+   });
+});
+</script>
+</head>
+<body>
+<div id="wb_LayoutGrid5">
+<div id="LayoutGrid5">
+<div class="row">
+<div class="col-1">
+<div id="wb_Heading1" style="display:inline-block;width:100%;z-index:0;">
+<h1 id="Heading1">TUGAS & FUNGSI | BP3 Tegal</h1>
+</div>
+<hr id="Line1" style="display:inline-block;width:379px;z-index:1;">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid4">
+<div id="LayoutGrid4">
+<div class="row">
+<div class="col-1">
+<div id="wb_EditableContent1" class="editable-content-hidden">
+<span style="color:#000000;font-family:'Trebuchet MS';font-size:16px;line-height:28px;">Tujuan pelayanan informasi publik di lingkungan Balai Pelatihan dan Penyuluhan Perikanan Tegal, meliputi:<br>a. Terwujudnya komunikasi dua arah yang harmonis antara penyedia informasi publik dengan pemohon dan pengguna informasi publik;<br>b. Terwujudnya sistem pengintegrasian yang baik antara penyedia informasi publik dengan PPID dalam memberikan pelayanan informasi kepada publik.<br><br><br>Prinsip pelayanan informasi publik meliputi:<br>a. Informasi publik diberikan dengan mengedepankan prinsip mudah, cepat, dan efisien;<br>b. Pelayanan informasi publik dilaksanakan melalui satu pintu;<br>c. Penyajian informasi publik yang diberikan kepada pemohon, menyesuaikan dengan jenis dan format yang disediakan PPID.<br><br>Jenis informasi publik di lingkungan Balai Pelatihan dan Penyuluhan Perikanan Tegal meliputi diantaranya informasi publik yang tersedia setiap saat; informasi publik yang diumumkan secara serta merta; informasi publik yang diumumkan secara berkala; dan informasi publik yang dikecualikan.<br>Berdasarkan Keputusan Menteri Kelautan dan Perikanan Nomor 36 tahun 2019, Tugas dan Fungsi PPID diantaranya :<br>a. menyediakan dan mengamankan informasi publik;<br>b. memberikan pelayanan informasi publik yang cepat, tepat, dan sederhana;<br>c. menyampaikan pemberitahuan tertulis atas permohonan informasi publik kepada pemohon informasi publik;<br>d. membantu menyiapkan konsep tanggapan keberatan atas pengajuan keberatan yang ditujukan kepada Atasan PPID;<br>e. menyusun standar operasional prosedur pelaksanaan tugas dan kewenangan PPID dalam rangka penyebarluasan informasi publik;<br>f. menetapkan daftar informasi publik dalam bentuk keputusan PPID mengenai Daftar Informasi Publik BPPP Tegal;<br>g. melaksanakan pengklasifikasian informasi publik atau perubahannya dengan persetujuan Atasan PPID dalam bentuk keputusan PPID mengenai klasifikasi Informasi;</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

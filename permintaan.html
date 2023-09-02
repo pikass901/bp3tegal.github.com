@@ -1,0 +1,302 @@
+<?php
+function ValidateEmail($email)
+{
+   $pattern = '/^([0-9a-z]([-.\w]*[0-9a-z])*@(([0-9a-z])+([-\w]*[0-9a-z])*\.)+[a-z]{2,6})$/i';
+   return preg_match($pattern, $email);
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['formid']) && $_POST['formid'] == 'layoutgrid6')
+{
+   $mailto = 'yourname@yourdomain.com';
+   $mailfrom = isset($_POST['email']) ? $_POST['email'] : $mailto;
+   $subject = 'Website form';
+   $message = 'Values submitted from web site form:';
+   $success_url = '';
+   $error_url = '';
+   $eol = "\n";
+   $error = '';
+   $internalfields = array ("submit", "reset", "send", "filesize", "formid", "captcha", "recaptcha_challenge_field", "recaptcha_response_field", "g-recaptcha-response", "h-recaptcha-response");
+   $boundary = md5(uniqid(time()));
+   $header  = 'From: '.$mailfrom.$eol;
+   $header .= 'Reply-To: '.$mailfrom.$eol;
+   $header .= 'MIME-Version: 1.0'.$eol;
+   $header .= 'Content-Type: multipart/mixed; boundary="'.$boundary.'"'.$eol;
+   $header .= 'X-Mailer: PHP v'.phpversion().$eol;
+
+   try
+   {
+      if (!ValidateEmail($mailfrom))
+      {
+         $error .= "The specified email address (" . $mailfrom . ") is invalid!\n<br>";
+         throw new Exception($error);
+      }
+      $message .= $eol;
+      $message .= "IP Address : ";
+      $message .= $_SERVER['REMOTE_ADDR'];
+      $message .= $eol;
+      foreach ($_POST as $key => $value)
+      {
+         if (!in_array(strtolower($key), $internalfields))
+         {
+            if (is_array($value))
+            {
+               $message .= ucwords(str_replace("_", " ", $key)) . " : " . implode(",", $value) . $eol;
+            }
+            else
+            {
+               $message .= ucwords(str_replace("_", " ", $key)) . " : " . $value . $eol;
+            }
+         }
+      }
+      $body  = 'This is a multi-part message in MIME format.'.$eol.$eol;
+      $body .= '--'.$boundary.$eol;
+      $body .= 'Content-Type: text/plain; charset=ISO-8859-1'.$eol;
+      $body .= 'Content-Transfer-Encoding: 8bit'.$eol;
+      $body .= $eol.stripslashes($message).$eol;
+      if (!empty($_FILES))
+      {
+         foreach ($_FILES as $key => $value)
+         {
+             if ($_FILES[$key]['error'] == 0)
+             {
+                $body .= '--'.$boundary.$eol;
+                $body .= 'Content-Type: '.$_FILES[$key]['type'].'; name='.$_FILES[$key]['name'].$eol;
+                $body .= 'Content-Transfer-Encoding: base64'.$eol;
+                $body .= 'Content-Disposition: attachment; filename='.$_FILES[$key]['name'].$eol;
+                $body .= $eol.chunk_split(base64_encode(file_get_contents($_FILES[$key]['tmp_name']))).$eol;
+             }
+         }
+      }
+      $body .= '--'.$boundary.'--'.$eol;
+      if ($mailto != '')
+      {
+         mail($mailto, $subject, $body, $header);
+      }
+      header('Location: '.$success_url);
+   }
+   catch (Exception $e)
+   {
+      $errorcode = file_get_contents($error_url);
+      $replace = "##error##";
+      $errorcode = str_replace($replace, $e->getMessage(), $errorcode);
+      echo $errorcode;
+   }
+   exit;
+}
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Profile | BP3 Tegal</title>
+<meta name="generator" content="BPPP Tegal | www.bppptegal.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="PPID-02.css" rel="stylesheet">
+<link href="permintaan.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_LayoutGrid5">
+<div id="LayoutGrid5">
+<div class="row">
+<div class="col-1">
+<div id="wb_Heading1" style="display:inline-block;width:100%;z-index:0;">
+<h1 id="Heading1">Permohonan Informasi | BP3 Tegal</h1>
+</div>
+<hr id="Line1" style="display:inline-block;width:250px;z-index:1;">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid4">
+<div id="LayoutGrid4">
+<div class="row">
+<div class="col-1">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid6">
+<form name="contact" method="post" action="<?php echo basename(__FILE__); ?>" enctype="multipart/form-data" id="LayoutGrid6">
+<input type="hidden" name="formid" value="layoutgrid6">
+<div class="row">
+<div class="col-1">
+<div id="wb_LayoutGrid7">
+<div id="LayoutGrid7">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label3" style="display:block;width:100%;line-height:16px;z-index:2;">Name:</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox1" style="display:block;width: 100%;height:25px;z-index:3;" name="name" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid8">
+<div id="LayoutGrid8">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label4" style="display:block;width:100%;line-height:16px;z-index:4;">Pekerjaan</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox2" style="display:block;width: 100%;height:25px;z-index:5;" name="email" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid9">
+<div id="LayoutGrid9">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label7" style="display:block;width:100%;line-height:16px;z-index:6;">Alamat</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox5" style="display:block;width: 100%;height:26px;z-index:7;" name="email" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid10">
+<div id="LayoutGrid10">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label5" style="display:block;width:100%;line-height:16px;z-index:8;">No. KTP / SIM / Identitas lainnya</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox4" style="display:block;width: 100%;height:26px;z-index:9;" name="email" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid11">
+<div id="LayoutGrid11">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label6" style="display:block;width:100%;line-height:16px;z-index:10;">No. Telp/HP</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox3" style="display:block;width: 100%;height:26px;z-index:11;" name="email" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid12">
+<div id="LayoutGrid12">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label8" style="display:block;width:100%;line-height:16px;z-index:12;">E-mail</label>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox6" style="display:block;width: 100%;height:26px;z-index:13;" name="email" value="" spellcheck="false">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid13">
+<div id="LayoutGrid13">
+<div class="row">
+<div class="col-1">
+<label for="Editbox1" id="Label9" style="display:block;width:100%;line-height:16px;z-index:14;">Cara mendapatkan informasi</label>
+</div>
+<div class="col-2">
+<div id="wb_Checkbox1" style="display:inline-block;width:20px;height:20px;z-index:15;">
+<input type="checkbox" id="Checkbox1" name="Checkbox1" value="on" style="display:inline-block;"><label for="Checkbox1"></label>
+</div>
+<label for="Editbox1" id="Label11" style="display:inline-block;width:183px;line-height:16px;z-index:16;">Cara mendapatkan informasi</label>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid14">
+<div id="LayoutGrid14">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+<div id="wb_Checkbox2" style="display:inline-block;width:20px;height:20px;z-index:17;">
+<input type="checkbox" id="Checkbox2" name="Checkbox1" value="on" style="display:inline-block;"><label for="Checkbox2"></label>
+</div>
+<label for="Editbox1" id="Label10" style="display:inline-block;width:183px;line-height:16px;z-index:18;">Cara mendapatkan informasi</label>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid15">
+<div id="LayoutGrid15">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid16">
+<div id="LayoutGrid16">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid17">
+<div id="LayoutGrid17">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid18">
+<div id="LayoutGrid18">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid19">
+<div id="LayoutGrid19">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid20">
+<div id="LayoutGrid20">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+<textarea name="comments" id="TextArea1" style="display:block;width: 100%;;height:100px;z-index:19;" rows="5" cols="81" spellcheck="false"></textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+<div id="wb_LayoutGrid21">
+<div id="LayoutGrid21">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+<input type="submit" id="Button1" name="" value="Send" style="display:inline-block;width:96px;height:25px;z-index:52;">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

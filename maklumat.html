@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Profile | BP3 Tegal</title>
+<meta name="generator" content="BPPP Tegal | www.bppptegal.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="PPID-02.css" rel="stylesheet">
+<link href="maklumat.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $.getJSON('maklumat.json?v=' + new Date().getTime(), function(data)
+   {
+      $.each(data, function(key, value)
+      {
+         $('#wb_'+value.object).html(value.content);
+      });
+   })
+   .always(function()
+   {
+      $('.editable-content-hidden').removeClass('editable-content-hidden');
+   });
+});
+</script>
+</head>
+<body>
+<div id="wb_LayoutGrid5">
+<div id="LayoutGrid5">
+<div class="row">
+<div class="col-1">
+<div id="wb_Heading1" style="display:inline-block;width:100%;z-index:0;">
+<h1 id="Heading1">Maklumat Pelayanan | BP3 Tegal</h1>
+</div>
+<hr id="Line1" style="display:inline-block;width:250px;z-index:1;">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid4">
+<div id="LayoutGrid4">
+<div class="row">
+<div class="col-1">
+<div id="wb_EditableContent1" class="editable-content-hidden">
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;color:#6495ED;">MAKLUMAT PELAYANAN</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;color:#6495ED;">PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;color:#6495ED;">BALAI PELATIHAN DAN PENYULUHAN PERIKANAN TEGAL</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">DENGAN INI MENYATAKAN SANGGUP MENYELENGGARAKAN</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">PELAYANAN INFORMASI PUBLIK SESUAI STANDAR PELAYANAN </p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">YANG TELAH DITETAPKAN DAN APABILA TIDAK MENEPATI JANJI,</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">KAMI SIAP MENERIMA SANKSI SESUAI PERATURAN</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">PERUNDANG-UNDANGAN YANG BERLAKU</p>
+<p style="font-size:24px;line-height:29.5px;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;">TEGAL, 24 FEBRUARI 2022</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;">PPID BALAI PELATIHAN DAN PENYULUHAN PERIKANAN TEGAL,</p>
+<p style="font-size:24px;line-height:29.5px;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;">ttd</p>
+<p style="font-size:24px;line-height:29.5px;">&nbsp;</p>
+<p style="font-size:24px;line-height:29.5px;color:#6495ED;line-height:42px;">MOCH. MUCHLISIN</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

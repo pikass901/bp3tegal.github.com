@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Profile | BP3 Tegal</title>
+<meta name="generator" content="BPPP Tegal | www.bppptegal.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="PPID-02.css" rel="stylesheet">
+<link href="profile.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $.getJSON('profile.json?v=' + new Date().getTime(), function(data)
+   {
+      $.each(data, function(key, value)
+      {
+         $('#wb_'+value.object).html(value.content);
+      });
+   })
+   .always(function()
+   {
+      $('.editable-content-hidden').removeClass('editable-content-hidden');
+   });
+});
+</script>
+</head>
+<body>
+<div id="wb_LayoutGrid5">
+<div id="LayoutGrid5">
+<div class="row">
+<div class="col-1">
+<div id="wb_Heading1" style="display:inline-block;width:100%;z-index:0;">
+<h1 id="Heading1">PPID | BP3 Tegal</h1>
+</div>
+<hr id="Line1" style="display:inline-block;width:250px;z-index:1;">
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid4">
+<div id="LayoutGrid4">
+<div class="row">
+<div class="col-1">
+<div id="wb_EditableContent1" class="editable-content-hidden">
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">Dalam rangka memberikan pelayanan informasi publik yang cepat, tepat, dan sederhana sesuai dengan Undang-Undang Nomor 14 Tahun 2008 Tentang Keterbukaan Informasi Publik, Menteri Kelautan dan Perikanan menetapkan Pejabat Pengelola Informasi dan Dokumentasi (PPID) dan Koordinator PPID di lingkungan Kementerian Kelautan dan Perikanan berdasarkan Keputusan Menteri Kelautan dan Perikanan Nomor 36/KEPMEN-KP/ 2019 Tentang&nbsp; Pejabat Pengelola Informasi dan Dokumentasi di Lingkungan Kementerian Kelautan dan Perikanan.</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">Terkait pelaksanaan tugas memberikan layanan informasi publik, PPID di lingkungan Kementerian Kelautan dan Perikanan berpedoman pada Peraturan Menteri Kelautan dan Perikanan Nomor 4/PERMEN-KP/2019 Tentang Pelayanan Informasi Publik Di Lingkungan Kementerian Kelautan dan Perikanan dan Keputusan Menteri Nomor 81/KEPMEN-KP/SJ/2014 Tentang Klasifikasi Informasi Yang Dikecualikan Di Lingkungan Kementerian Kelautan Dan Perikanan.&nbsp; </p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">Pada Keputusan Menteri Kelautan dan Perikanan Nomor 36/KEPMEN-KP/ 2019 ditetapkan struktur baru sebagai berikut:</p>
+<p style="font-size:17px;line-height:22px;line-height:30px;">&nbsp;</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;"><img alt="" width="592" height="374" src="images/EditableContent11.png"></p>
+<p style="font-size:17px;line-height:22px;line-height:30px;">&nbsp;</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">1. Sekretaris Jenderal sebagai Atasan PPID Kementerian Kelautan dan Perikanan,</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">2. Para Direktur Jenderal, para Kepala Badan, Inspektur Jenderal di lingkungan Kementerian Kelautan dan Perikanan sebagai Atasan PPID Eselon I,</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">3. Kepala Biro Humas dan Kerjasama Luar Negeri sebagai PPID Kementerian Kelautan dan Perikanan,</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">4. PPID Unit Eselon I dan PPID UPT sebagai Perangkat PPID Kementerian Kelautan dan Perikanan. </p>
+<p style="font-size:17px;line-height:22px;line-height:30px;">&nbsp;</p>
+<p style="font-size:17px;line-height:22px;color:#000000;line-height:30px;">Terkait pelaksanaan tugas memberikan layanan informasi publik, PPID di lingkungan Kementerian Kelautan dan Perikanan berpedoman pada Peraturan Menteri Kelautan dan Perikanan Nomor 4/PERMEN-KP/2019 Tentang Pelayanan Informasi Publik Di Lingkungan Kementerian Kelautan dan Perikanan dan Keputusan Menteri Nomor 81/KEPMEN-KP/SJ/2014 Tentang Klasifikasi Informasi Yang Dikecualikan Di Lingkungan Kementerian Kelautan Dan Perikanan.&nbsp; </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
